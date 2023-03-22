@@ -1,15 +1,18 @@
 import express from 'express';
-require('dotenv').config();
-const PORT = process.env.PORT || 5000;
+import dotenv from 'dotenv';
+//require('dotenv')
+dotenv.config();
+
+const port = process.env.PORT || 5000;
 
 //создали express приложение
 const app = express();
 
 
 //запускаем веб сервер на порте 4444
-app.listen(PORT, (err)=>{
+app.listen(port, (err)=>{
     if (err){
         return console.log(err);
     }
-    console.log(`Server OK ${PORT}`);
+    console.log(`Server OK ${process.env.PORT}`);
 })
