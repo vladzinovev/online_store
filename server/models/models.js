@@ -1,4 +1,4 @@
-import sequelize from '../db';
+import sequelize from '../db.js';
 import {DataTypes} from 'sequelize';
 
 //модель пользователя
@@ -88,7 +88,7 @@ DeviceInfo.belongsTo(Device) //уникальность характеристи
 Type.belongsToMany(Brand, {through: TypeBrand }) //тип принадлежит бренду
 Brand.belongsToMany(Type, {through: TypeBrand }) //бренду принадлежит типу
 
-module.exports = {
+export default {
     User,
     Basket,
     BasketDevice,

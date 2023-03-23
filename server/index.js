@@ -8,12 +8,24 @@ dotenv.config();
 import sequelize from "./db.js";
 //const sequelize=require('./db.js');
 
+import models from './models/models.js'
+
+//настроим cors чтобы могли отправлять запросы с браузера
+import cors from 'cors';
 
 const port = process.env.PORT || 5000;
 
 //создали express приложение
 const app = express();
 
+app.use(cors());
+//чтобы работать с json форматом
+app.use(express.json());
+
+//пример работы кода
+/* app.get('/',(req,res)=>{
+    res.status(200).json({message:'WORKING!!!'})
+}) */
 
 //вызываем функцию для подключения к БД
 const start = async () => {
