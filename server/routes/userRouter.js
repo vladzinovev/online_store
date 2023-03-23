@@ -3,8 +3,13 @@ import Router from 'express';
 //создали обьект роутера
 const router = new Router();
 
-router.post('/registration') //регистарция
-router.post('/login') //ввод логина
-router.get('/auth') //проверяем зарегестрирован или нет
+import userController from '../controllers/userController.js';
+import authMiddleware from '../middleware/authMiddleware.js';
+
+
+router.post('/registration', userController.registration) //регистарция
+router.post('/login', userController.login) //ввод логина
+router.get('/auth', authMiddleware, userController.check) //проверяем зарегестрирован или нет
+
 
 export default router;
