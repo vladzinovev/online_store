@@ -1,4 +1,4 @@
-import {Type} from '../models/models.js'
+import Type from '../models/models.js'
 
 class TypeController {
     //создание типа

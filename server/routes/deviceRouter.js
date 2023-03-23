@@ -1,10 +1,10 @@
-//основной роутер нашего приложения
-import Router from 'express';
-//создали обьект роутера
-const router = new Router();
+import Router from 'express'; //основной роутер нашего приложения
+const router = new Router(); //создали обьект роутера
 
-router.post('/')
-router.get('/')
-router.get('/:id') //получить по id
+import deviceController from '../controllers/deviceController.js';
+
+router.post('/', deviceController.create)
+router.get('/', deviceController.getAll)
+router.get('/:id', deviceController.getOne) //получить по id
 
 export default router;

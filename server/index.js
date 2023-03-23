@@ -1,37 +1,31 @@
 import express from 'express';
-
-//для импорта env файла
-import dotenv from 'dotenv';
+import dotenv from 'dotenv'; //для импорта env файла
 //require('dotenv') тоже самое что и сверху импорт
 dotenv.config();
 
-import sequelize from "./db.js";
-//const sequelize=require('./db.js');
-
-import models from './models/models.js'
+import sequelize from "./db.js"; //const sequelize=require('./db.js');
 
 //настроим cors чтобы могли отправлять запросы с браузера
 import cors from 'cors';
 
+import models from './models/models.js'
 import router from './routes/index.js';
-
-
+import errorHandler from './middleware/ErrorHandlingMiddleware.js'
 
 
 const port = process.env.PORT || 5000;
 
-//создали express приложение
-const app = express();
+const app = express(); //создали express приложение
 
-app.use(cors());
-//чтобы работать с json форматом
+app.use(cors()); //чтобы работать с json форматом
 app.use(express.json());
-app.use('/api', router)
+app.use('/api', router);
+app.use(errorHandler); // Обработка ошибок, самый последний идет Middleware
 
 //пример работы кода
-app.get('/',(req,res)=>{
+/* app.get('/',(req,res)=>{
     res.status(200).json({message:'WORKING!!!'})
-}) 
+})  */
 
 //вызываем функцию для подключения к БД
 const start = async () => {

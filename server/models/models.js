@@ -88,6 +88,7 @@ DeviceInfo.belongsTo(Device) //уникальность характеристи
 Type.belongsToMany(Brand, {through: TypeBrand }) //тип принадлежит бренду
 Brand.belongsToMany(Type, {through: TypeBrand }) //бренду принадлежит типу
 
+
 export default {
     User,
     Basket,
@@ -96,8 +97,8 @@ export default {
     Type,
     Brand,
     Rating,
-    TypeBrand,
-    DeviceInfo
+    DeviceInfo,
+    TypeBrand
 }
 
 

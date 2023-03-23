@@ -1,7 +1,5 @@
-//основной роутер нашего приложения
-import Router from 'express';
-//создали обьект роутера
-const router = new Router();
+import Router from 'express'; //основной роутер нашего приложения
+const router = new Router(); //создали обьект роутера
 
 //импортируем все файлы с роутерами
 import deviceRouter from'./deviceRouter.js';

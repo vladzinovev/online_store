@@ -1,9 +1,10 @@
-//основной роутер нашего приложения
-import Router from 'express';
-//создали обьект роутера
-const router = new Router();
+import Router from 'express'; //основной роутер нашего приложения
+const router = new Router(); //создали обьект роутера
 
-router.post('/')
-router.get('/')
+import typeController from '../controllers/typeController.js'
+import checkRole from '../middleware/checkRoleMiddleware.js'
+
+router.post('/', checkRole('ADMIN'), typeController.create)
+router.get('/', typeController.getAll)
 
 export default router;

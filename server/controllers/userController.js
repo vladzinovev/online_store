@@ -2,7 +2,8 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 import ApiError from '../error/ApiError.js';
-import {User, Basket} from '../models/models.js';
+import User from '../models/models.js';
+import Basket from '../models/models.js';
 
 //создание jwt token
 const generateJwt = (id, email, role) => {

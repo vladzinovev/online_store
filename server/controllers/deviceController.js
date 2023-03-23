@@ -1,7 +1,8 @@
-import uuid from 'uuid'
+import {v4 as uuid} from 'uuid';
 import path from 'path';
 
-import {Device, DeviceInfo} from '../models/models.js'
+import DeviceInfo from '../models/models.js';
+import Device from '../models/models.js';
 import ApiError from '../error/ApiError.js';
 
 class DeviceController {

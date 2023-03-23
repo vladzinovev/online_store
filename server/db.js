@@ -1,8 +1,5 @@
-import Sequelize from "sequelize";
-//const Sequelize = require('sequelize');
-
-//для импорта env файла
-import dotenv from 'dotenv';
+import Sequelize from "sequelize"; //const Sequelize = require('sequelize');
+import dotenv from 'dotenv'; //для импорта env файла
 dotenv.config();
 
 const sequelize = new Sequelize(

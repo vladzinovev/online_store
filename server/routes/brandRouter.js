@@ -1,9 +1,9 @@
-//основной роутер нашего приложения
-import Router from 'express';
-//создали обьект роутера
-const router = new Router();
+import Router from 'express'; //основной роутер нашего приложения
+const router = new Router(); //создали обьект роутера
 
-router.post('/')
-router.get('/')
+import brandController from '../controllers/brandController.js';
+
+router.post('/', brandController.create)
+router.get('/', brandController.getAll)
 
 export default router;
