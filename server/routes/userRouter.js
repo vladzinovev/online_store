@@ -3,8 +3,8 @@ import Router from 'express';
 //создали обьект роутера
 const router = new Router();
 
-router.post('/')
-router.get('/')
-router.get('/:id') //получить по id
+router.post('/registration') //регистарция
+router.post('/login') //ввод логина
+router.get('/auth') //проверяем зарегестрирован или нет
 
 export default router;
