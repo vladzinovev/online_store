@@ -1,5 +1,5 @@
-import sequelize from '../db.js';
-import {DataTypes} from 'sequelize';
+const sequelize = require('../db')
+const {DataTypes} = require('sequelize')
 
 //модель пользователя
 const User = sequelize.define('user', {
@@ -58,9 +58,7 @@ const TypeBrand = sequelize.define('type_brand', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
-
 //описываем как модели связаны друг с другом
-
 User.hasOne(Basket) //1 к 1
 Basket.belongsTo(User) //корзина принадлежит пользователю
 
@@ -88,8 +86,7 @@ DeviceInfo.belongsTo(Device) //уникальность характеристи
 Type.belongsToMany(Brand, {through: TypeBrand }) //тип принадлежит бренду
 Brand.belongsToMany(Type, {through: TypeBrand }) //бренду принадлежит типу
 
-
-export default {
+module.exports = {
     User,
     Basket,
     BasketDevice,
@@ -97,8 +94,8 @@ export default {
     Type,
     Brand,
     Rating,
-    DeviceInfo,
-    TypeBrand
+    TypeBrand,
+    DeviceInfo
 }
 
 

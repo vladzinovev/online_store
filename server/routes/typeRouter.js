@@ -1,10 +1,9 @@
-import Router from 'express'; //основной роутер нашего приложения
-const router = new Router(); //создали обьект роутера
-
-import typeController from '../controllers/typeController.js'
-import checkRole from '../middleware/checkRoleMiddleware.js'
+const Router = require('express') //основной роутер нашего приложения
+const router = new Router() //создали обьект роутера
+const typeController = require('../controllers/typeController')
+const checkRole = require('../middleware/checkRoleMiddleware')
 
 router.post('/', checkRole('ADMIN'), typeController.create)
 router.get('/', typeController.getAll)
 
-export default router;
+module.exports = router

@@ -1,27 +1,26 @@
-import {v4 as uuid} from 'uuid';
-import path from 'path';
-
-import DeviceInfo from '../models/models.js';
-import Device from '../models/models.js';
-import ApiError from '../error/ApiError.js';
+const uuid = require('uuid');//генерирует случайные рандомные id
+const path = require('path');
+const {Device, DeviceInfo} = require('../models/models')
+const ApiError = require('../error/ApiError');
 
 class DeviceController {
     //создание девайса
     async create(req, res, next) {
         try {
             let {name, price, brandId, typeId, info} = req.body
-            const {img} = req.files
+            const {img} = req.files; //получаем картинку из поля files
             let fileName = uuid.v4() + ".jpg"
-            img.mv(path.resolve(__dirname, '..', 'static', fileName))
-            const device = await Device.create({name, price, brandId, typeId, img: fileName});
+            img.mv(path.resolve(__dirname, '..', 'static', fileName));//перемещаем картинку в папку static
+            const device = await Device.create({name, price, brandId, typeId, img: fileName}); //создаем сам девайс
 
+            //добавляем дополнительную информацию
             if (info) {
                 info = JSON.parse(info)
                 info.forEach(i =>
                     DeviceInfo.create({
-                        title: i.title,
-                        description: i.description,
-                        deviceId: device.id
+                        title: i.title, //заголовок
+                        description: i.description, //описание
+                        deviceId: device.id //id девайса
                     })
                 )
             }
@@ -68,5 +67,4 @@ class DeviceController {
     }
 }
 
-const deviceController = new DeviceController();
-export default deviceController;
+module.exports = new DeviceController()

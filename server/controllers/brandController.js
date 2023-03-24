@@ -1,4 +1,4 @@
-import Brand from '../models/models.js'
+const {Brand} = require('../models/models');
 
 class BrandController {
     //создание бренда
@@ -16,5 +16,4 @@ class BrandController {
 
 }
 
-const brandController = new BrandController();
-export default brandController;
+module.exports = new BrandController()

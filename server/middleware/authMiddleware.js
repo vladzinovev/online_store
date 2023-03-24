@@ -1,6 +1,7 @@
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken')
 
-const authMiddle = function (req, res, next) {
+//token не валиден, пользователь не автризован
+module.exports = function (req, res, next) {
     if (req.method === "OPTIONS") {
         next()
     }
@@ -16,4 +17,3 @@ const authMiddle = function (req, res, next) {
         res.status(401).json({message: "Не авторизован"})
     }
 };
-export default authMiddle;

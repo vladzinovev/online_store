@@ -1,4 +1,4 @@
-import Type from '../models/models.js'
+const {Type} = require('../models/models')
 
 class TypeController {
     //создание типа
@@ -16,5 +16,4 @@ class TypeController {
 
 }
 
-const typeController = new TypeController();
-export default typeController;
+module.exports = new TypeController()

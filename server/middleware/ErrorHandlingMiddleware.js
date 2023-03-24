@@ -1,6 +1,6 @@
-import ApiError from '../error/ApiError.js';
+const ApiError = require('../error/ApiError');
 
-const errorHandler = function (err, req, res, next) {
+module.exports = function (err, req, res, next) {
     //если статус ошибки apierror
     if (err instanceof ApiError) {
         return res.status(err.status).json({message: err.message})
@@ -8,4 +8,3 @@ const errorHandler = function (err, req, res, next) {
     //другая ошибка
     return res.status(500).json({message: "Непредвиденная ошибка!"})
 }
-export default errorHandler;

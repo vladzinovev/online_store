@@ -1,11 +1,11 @@
-import Router from 'express'; //основной роутер нашего приложения
-const router = new Router(); //создали обьект роутера
+const Router = require('express') //основной роутер нашего приложения
+const router = new Router() //создали обьект роутера
 
 //импортируем все файлы с роутерами
-import deviceRouter from'./deviceRouter.js';
-import userRouter from'./userRouter.js';
-import brandRouter from'./brandRouter.js';
-import typeRouter from'./typeRouter.js';
+const deviceRouter = require('./deviceRouter')
+const userRouter = require('./userRouter')
+const brandRouter = require('./brandRouter')
+const typeRouter = require('./typeRouter')
 
 //файл обьединяющий все роуты
 router.use('/user', userRouter)
@@ -13,4 +13,4 @@ router.use('/type', typeRouter)
 router.use('/brand', brandRouter)
 router.use('/device', deviceRouter)
 
-export default router;
+module.exports = router

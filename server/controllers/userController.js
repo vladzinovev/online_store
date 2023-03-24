@@ -1,9 +1,7 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-
-import ApiError from '../error/ApiError.js';
-import User from '../models/models.js';
-import Basket from '../models/models.js';
+const ApiError = require('../error/ApiError');
+const bcrypt = require('bcrypt'); //для того чтобы хэшировать пароли и не хранить в открытом виде
+const jwt = require('jsonwebtoken'); //создание json tokena
+const {User, Basket} = require('../models/models')
 
 //создание jwt token
 const generateJwt = (id, email, role) => {
@@ -21,13 +19,14 @@ class UserController {
         if (!email || !password) {
             return next(ApiError.badRequest('Некорректный email или password'))
         }
+        //существует ли пользователь с таким email
         const candidate = await User.findOne({where: {email}})
         if (candidate) {
             return next(ApiError.badRequest('Пользователь с таким email уже существует'))
         }
-        const hashPassword = await bcrypt.hash(password, 5)
-        const user = await User.create({email, role, password: hashPassword})
-        const basket = await Basket.create({userId: user.id})
+        const hashPassword = await bcrypt.hash(password, 5); //хэшируем пароль
+        const user = await User.create({email, role, password: hashPassword}); //создаем
+        const basket = await Basket.create({userId: user.id}); //создаем корзину
         const token = generateJwt(user.id, user.email, user.role)
         return res.json({token})
     }
@@ -39,6 +38,7 @@ class UserController {
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
+        //пароль пользователя совпадает с БД
         let comparePassword = bcrypt.compareSync(password, user.password)
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
@@ -53,5 +53,5 @@ class UserController {
         return res.json({token})
     }
 }
-const userController = new UserController()
-export default userController;
+
+module.exports = new UserController()
