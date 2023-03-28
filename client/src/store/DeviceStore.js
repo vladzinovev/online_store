@@ -5,8 +5,8 @@ export default class DeviceStore {
         this._types = []
         this._brands = []
         this._devices = []
-        this._selectedType = {}
-        this._selectedBrand = {}
+        this._selectedType = {}; //выбранный тип
+        this._selectedBrand = {}; //выбранный бренд
         this._page = 1
         this._totalCount = 0
         this._limit = 3
