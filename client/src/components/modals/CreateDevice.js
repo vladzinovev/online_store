@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import Modal from "react-bootstrap/Modal";
 import {Button, Dropdown, Form, Row, Col} from "react-bootstrap";
 import {Context} from "../../index";
-import {createDevice, fetchBrands, fetchDevices, fetchTypes} from "../../http/deviceAPI";
+import {createDevice, fetchBrands, fetchTypes} from "../../http/deviceAPI";
 import {observer} from "mobx-react-lite";
 
 const CreateDevice = observer(({show, onHide}) => {
@@ -12,6 +12,7 @@ const CreateDevice = observer(({show, onHide}) => {
     const [file, setFile] = useState(null)
     const [info, setInfo] = useState([])
 
+    //подгружаем все существующие типы и бренды
     useEffect(() => {
         fetchTypes().then(data => device.setTypes(data))
         fetchBrands().then(data => device.setBrands(data))
@@ -31,6 +32,7 @@ const CreateDevice = observer(({show, onHide}) => {
         setFile(e.target.files[0])
     }
 
+    //отправляет запрос на сервер и добавляет новое устройство
     const addDevice = () => {
         const formData = new FormData()
         formData.append('name', name)
